@@ -57,6 +57,8 @@
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-thunk": "^1.0.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
