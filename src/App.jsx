@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux'
-
 import './App.less'
+
+import { actionCreators } from './redux/modules/home'
 
 function App(props) {
   return (
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     buttonClick () {
-      console.log(11)
+      dispatch(actionCreators.buttonClick())
     }
   }
 }

@@ -1,6 +1,6 @@
 
-import * as actioinTypes from './actioinTypes'
+import * as actionTypes from './actionTypes'
 
 export const buttonClick = () => ({
-  type: actioinTypes.BTN_CLICK 
+  type: actionTypes.BTN_CLICK 
 })
