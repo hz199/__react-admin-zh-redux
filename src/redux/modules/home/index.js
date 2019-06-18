@@ -1,9 +1,12 @@
 import * as actionTypes from './actionTypes'
 import * as actionCreators from './actionCreators'
+import { fromJS } from 'immutable'
 
-const defaultStore = {
+// 引入 immutableJS 把 store 变成不可修改的数据
+
+const defaultStore = fromJS({
   test: 11
-}
+})
 
 /**
  * home store
@@ -13,12 +16,12 @@ const defaultStore = {
  */
 
 const homeReducer = (state = defaultStore, action) => {
-  if (action.type === actionTypes.BTN_CLICK) {
-    return {
-      test: Math.random()
-    }
+  switch (action.type) {
+    case actionTypes.BTN_CLICK:
+      return state.set('test', Math.random())
+    default:
+      return state
   }
-  return state
 }
 
 export { homeReducer, actionTypes,  actionCreators}
