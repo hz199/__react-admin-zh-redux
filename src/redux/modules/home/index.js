@@ -19,7 +19,7 @@ const defaultStore = fromJS({
 const homeReducer = (state = defaultStore, action) => {
   switch (action.type) {
     case actionTypes.BTN_CLICK:
-      return state.set('test', Math.random())
+      return state.set('test', action.data)
     case actionTypes.AXIOS_TEST_DATA:
       return state.set('testAxiosData', action.data)
     default:
