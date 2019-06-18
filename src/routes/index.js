@@ -34,5 +34,4 @@ class routesApp extends Component {
   }
 }
 export default routesApp
-
 // Switch 里面不应该有其他的标签
