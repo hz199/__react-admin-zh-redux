@@ -9,7 +9,15 @@ function App(props) {
   return (
     <div className="App">
       <Button type="danger" onClick={props.buttonClick}>Danger</Button>
+      <Button onClick={props.axiosTest}>axiosTest</Button>
       <p>{props.test}</p>
+      <ul>
+        {
+          props.testAxiosData.map(item => {
+            return <li key={item.title}>{ item.title }</li>
+          })
+        }
+      </ul>
     </div>
   );
 }
@@ -17,7 +25,8 @@ function App(props) {
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
-    test: state.getIn(['home', 'test'])
+    test: state.getIn(['home', 'test']),
+    testAxiosData: state.getIn(['home', 'testAxiosData'])
   }
 }
 
@@ -26,6 +35,9 @@ const mapDispatchToProps = dispatch => {
   return {
     buttonClick () {
       dispatch(actionCreators.buttonClick())
+    },
+    axiosTest () {
+      dispatch(actionCreators.getTestData())
     }
   }
 }
