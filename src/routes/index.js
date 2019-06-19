@@ -15,18 +15,18 @@ const Protected =  ({component: Comp, ...rest}) => {
     <Route {...rest} render={ () => {
       const { title } = rest.meta
       document.title = title || 'react-admin'
-      const { computedMatch } = rest
-      return <Comp routerData={computedMatch}/>
+      return <Comp {...rest}/>
     }}/>
   )
 }
 
-const routerApp = () => {
+const routerApp = (props) => {
   return (
     <Fragment>
       {
         routes.map((item) => (
           <Protected
+            {...props}
             path={ item.path }
             component={ item.component }
             key={ item.path }
