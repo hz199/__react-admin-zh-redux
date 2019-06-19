@@ -1,7 +1,7 @@
 
 
-import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { Route } from 'react-router-dom'
 import routes from './api'
 // import Layout from '../views/Layout'
 
@@ -14,24 +14,30 @@ const Protected =  ({component: Comp, ...rest}) => {
   return (
     <Route {...rest} render={ () => {
       const { title } = rest.meta
-      document.title = title || 'closeEyes'
+      document.title = title || 'react-admin'
       const { computedMatch } = rest
       return <Comp routerData={computedMatch}/>
-    } }/>
+    }}/>
   )
 }
 
-class routesApp extends Component {
-  render() {
-    return (
-      <Switch>
-        {
-          routes.map((item, key) => <Protected path={ item.path } component={ item.component } key={ key } exact={!!item.exact} meta={item.meta}></Protected>)
-        }
-        <Route render={() => <Redirect to="/404" />} />
-      </Switch>
-    )
-  }
+const routerApp = () => {
+  return (
+    <Fragment>
+      {
+        routes.map((item) => (
+          <Protected
+            path={ item.path }
+            component={ item.component }
+            key={ item.path }
+            exact={!!item.exact}
+            meta={item.meta}>
+          </Protected>
+        ))
+      }
+    </Fragment>
+  )
 }
-export default routesApp
+
+export default routerApp
 // Switch 里面不应该有其他的标签

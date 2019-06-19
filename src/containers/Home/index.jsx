@@ -9,7 +9,7 @@ function App(props) {
   return (
     <div className="App">
       <Button type="danger" onClick={props.buttonClick}>Danger</Button>
-      <Button onClick={props.axiosTest}>axiosTest</Button>
+      <Button type="primary" onClick={props.axiosTest}>axiosTest</Button>
       <p>{props.test}</p>
       <ul>
         {

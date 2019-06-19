@@ -26,6 +26,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
+const lessTheme = require('./theme')
 const postcssNormalize = require('postcss-normalize');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -72,7 +73,7 @@ module.exports = function (webpackEnv) {
   const env = getClientEnvironment(publicUrl);
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor, preProcessorOption) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -114,6 +115,7 @@ module.exports = function (webpackEnv) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
+          ...(preProcessorOption ? preProcessorOption : {})
         },
       });
     }
@@ -361,7 +363,7 @@ module.exports = function (webpackEnv) {
                     require.resolve('babel-plugin-import'), {
                       libraryName: 'antd',
                       libraryDirectory: 'es',
-                      style: 'css',
+                      style: true,
                     }
                   ]
                 ],
@@ -455,7 +457,7 @@ module.exports = function (webpackEnv) {
               use: getStyleLoaders({
                 importLoaders: 2,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
-              }, 'less-loader'),
+              }, 'less-loader', lessTheme),
             },
             {
               test: lessModuleRegex,
@@ -465,7 +467,8 @@ module.exports = function (webpackEnv) {
                   getLocalIdent: getCSSModuleLocalIdent,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'less-loader'
+                'less-loader',
+                lessTheme
               ),
             },
             // Adds support for CSS Modules, but using SASS
