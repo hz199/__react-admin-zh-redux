@@ -13,7 +13,6 @@ export default () => (
       <Route exact path='/404' component={ NoFind } />
       <Route exact path='/login' component={ Login } />
       <Route render={() => <Redirect to='/404'/>} />
-      {/* login */}
     </Switch>
   </BrowserRouter>
 )

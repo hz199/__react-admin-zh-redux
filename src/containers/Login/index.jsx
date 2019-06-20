@@ -22,6 +22,7 @@ const Login = (props) => {
         <div className="login-form" >
           <div className="login-logo">
             <span>React Admin</span>
+            {/* <p>{ props.userInfo }</p> */}
           </div>
           <Form onSubmit={handleSubmit} style={{ maxWidth: '300px' }}>
             <FormItem>
@@ -57,9 +58,6 @@ const Login = (props) => {
 
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
-
-  console.log(state.get('auth').get("userInfo"))
-
   return {
     userInfo: state.getIn(['auth', 'userInfo']),
   }
