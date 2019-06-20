@@ -3,7 +3,7 @@ import { asyncImport } from '../utils/routerLoadable'
 const routes = [
   {
     name: 'Home',
-    path: '/',
+    path: '/app',
     component: asyncImport(() => import('../containers/Home')),
     meta: {
       title: '首页'
@@ -11,7 +11,7 @@ const routes = [
   },
   {
     name: 'TestPage',
-    path: '/test',
+    path: '/app/test',
     component: asyncImport(() => import('../containers/TestPage')),
     meta: {
       title: '权限测试页',

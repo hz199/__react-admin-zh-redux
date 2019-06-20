@@ -3,12 +3,12 @@ const menus = [
   {
     type: 'pie-chart',
     title: '首页',
-    path: '/'
+    path: '/app'
   },
   {
     type: 'desktop',
     title: '测试页',
-    path: '/test'
+    path: '/app/test'
   }
 ]
 

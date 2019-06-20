@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import routes from './api'
 import queryString from 'query-string'
 
@@ -32,7 +32,6 @@ const Protected =  ({component: Comp, ...rest}) => {
 const routerApp = (props) => {
   const query = queryString.parse(props.location.search)
   props.match.query = query
-
   return (
     <Switch>
       {
@@ -47,6 +46,7 @@ const routerApp = (props) => {
           </Protected>
         ))
       }
+      <Route render={() => <Redirect to='/404'/>} />
     </Switch>
   )
 }
