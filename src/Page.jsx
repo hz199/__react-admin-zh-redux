@@ -8,7 +8,7 @@ import Login from './containers/Login'
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/' render={() => <Redirect to="/app" push />} />
+      <Route exact path='/' render={() => <Redirect to="/app" />} />
       <Route path='/app' component={App} />
       <Route exact path='/404' component={ NoFind } />
       <Route exact path='/login' component={ Login } />

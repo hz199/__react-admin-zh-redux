@@ -5,6 +5,7 @@ import './App.less'
 import Menus from './components/Menus'
 import AdminHeader from './components/Layout/Header'
 import { Layout } from 'antd'
+import { connect } from 'react-redux'
 
 const App = (props) => {
   const [collapsed, setCollapsed] = useState(false)
@@ -19,7 +20,9 @@ const App = (props) => {
         <Menus {...props}></Menus>
       </Layout.Sider>
       <Layout>
-        <AdminHeader></AdminHeader>
+        <AdminHeader
+          userInfo={props.userInfo}
+        ></AdminHeader>
         <Layout.Content style={{ margin: '16px 16px 0' }}>
           <div style={{ padding: 24, background: '#fff', minHeight: '83vh' }}>
             <Routes {...props}></Routes>
@@ -31,4 +34,14 @@ const App = (props) => {
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.auth.get('userInfo')
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

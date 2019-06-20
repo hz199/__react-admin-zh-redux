@@ -9,7 +9,9 @@ const menu = (
   </Menu>
 )
 
-const AdminHeader = () => {
+const AdminHeader = (props) => {
+  console.log(props)
+
   return (
     <Layout.Header style={{ background: '#fff', padding: 0 }} className="clearfix">
       <div className="admin-header-left pull-left">
@@ -17,7 +19,7 @@ const AdminHeader = () => {
       </div>
       <div className="admin-header-right pull-right">
         <Dropdown overlay={menu}>
-          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+          <Avatar src={props.avatar || ''} />
         </Dropdown>
       </div>
     </Layout.Header>

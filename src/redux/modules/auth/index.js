@@ -5,7 +5,7 @@ import { fromJS } from 'immutable'
 // 引入 immutableJS 把 store 变成不可修改的数据
 
 const defaultStore = fromJS({
-  userInfo: [1, 2, 3]
+  userInfo: {}
 })
 
 /**

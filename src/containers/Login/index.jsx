@@ -3,6 +3,9 @@ import React from 'react'
 import './index.less'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import { connect } from 'react-redux'
+import * as authServices from '@/services/auth'
+import { actionCreators } from '@/redux/modules/auth'
+
 const FormItem = Form.Item
 
 const Login = (props) => {
@@ -12,9 +15,19 @@ const Login = (props) => {
       e.preventDefault()
       props.form.validateFields((err, values) => {
         if (!err) {
-          console.log(values)
+          submitAuth(values)
         }
       })
+    }
+
+    const submitAuth = async (payload) => {
+      const result = await authServices.login(payload)
+
+      if (result.code === 0) {
+        props.history.push('/')
+
+        props.setUserInfo(result.data)
+      }
     }
 
     return (
@@ -59,19 +72,16 @@ const Login = (props) => {
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.getIn(['auth', 'userInfo']),
+    userInfo: state.auth.get('userInfo'),
   }
 }
 
 // dispatch 映射到props
 const mapDispatchToProps = dispatch => {
   return {
-    // buttonClick () {
-    //   dispatch(actionCreators.buttonClick(Math.random()))
-    // },
-    // axiosTest () {
-    //   dispatch(actionCreators.getTestData())
-    // }
+    setUserInfo (User) {
+      dispatch(actionCreators.setUserInfo(User))
+    },
   }
 }
 
