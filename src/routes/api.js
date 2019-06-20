@@ -4,7 +4,6 @@ const routes = [
   {
     name: 'Home',
     path: '/',
-    exact: true,
     component: asyncImport(() => import('../containers/Home')),
     meta: {
       title: '首页'
@@ -13,7 +12,6 @@ const routes = [
   {
     name: 'TestPage',
     path: '/test',
-    exact: true,
     component: asyncImport(() => import('../containers/TestPage')),
     meta: {
       title: '测试页'

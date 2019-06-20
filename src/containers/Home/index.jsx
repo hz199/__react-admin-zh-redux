@@ -6,6 +6,8 @@ import './index.less'
 import { actionCreators } from '../../redux/modules/home'
 
 function App(props) {
+  console.log(props, 'home')
+
   return (
     <div className="App">
       <Button type="danger" onClick={props.buttonClick}>Danger</Button>

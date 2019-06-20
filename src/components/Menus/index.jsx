@@ -51,7 +51,9 @@ const Menus = (props) => {
    * menuitem 点击回调
    */
   const handleMenu = (params) => {
-    props.history.push(params.key)
+    if (params.key !== props.history.location.pathname) {
+      props.history.push(params.key)
+    }
   }
 
   /**
@@ -74,7 +76,7 @@ const Menus = (props) => {
 
   return (
     <Menu theme='dark'
-      defaultSelectedKeys={['/chart']}
+      defaultSelectedKeys={[props.history.location.pathname]}
       onClick={handleMenu} mode="inline">
       {
         injectMenu(menuConfig)

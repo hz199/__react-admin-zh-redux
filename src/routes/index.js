@@ -1,9 +1,9 @@
 
 
-import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 import routes from './api'
-// import Layout from '../views/Layout'
+import queryString from 'query-string'
 
 /**
  * @param  {Protected:登陆拦截（函数组建）}
@@ -15,14 +15,19 @@ const Protected =  ({component: Comp, ...rest}) => {
     <Route {...rest} render={ () => {
       const { title } = rest.meta
       document.title = title || 'react-admin'
-      return <Comp {...rest}/>
+
+      const { exact, path, meta, ...otherRest } = rest
+      return <Comp {...otherRest}/>
     }}/>
   )
 }
 
 const routerApp = (props) => {
+  const query = queryString.parse(props.location.search)
+  props.match.query = query
+
   return (
-    <Fragment>
+    <Switch>
       {
         routes.map((item) => (
           <Protected
@@ -30,12 +35,12 @@ const routerApp = (props) => {
             path={ item.path }
             component={ item.component }
             key={ item.path }
-            exact={!!item.exact}
+            exact
             meta={item.meta}>
           </Protected>
         ))
       }
-    </Fragment>
+    </Switch>
   )
 }
 
