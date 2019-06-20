@@ -6,8 +6,6 @@ import './index.less'
 import { actionCreators } from '../../redux/modules/home'
 
 function App(props) {
-  console.log(props, 'home')
-
   return (
     <div className="App">
       <Button type="danger" onClick={props.buttonClick}>Danger</Button>
@@ -21,7 +19,7 @@ function App(props) {
         }
       </ul>
     </div>
-  );
+  )
 }
 
 // 把redux 里面的数据映射到 props

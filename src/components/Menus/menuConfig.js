@@ -8,7 +8,7 @@ const menus = [
   {
     type: 'desktop',
     title: '测试页',
-    path: '/test?id=111'
+    path: '/test'
   }
 ]
 

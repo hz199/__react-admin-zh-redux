@@ -14,7 +14,8 @@ const routes = [
     path: '/test',
     component: asyncImport(() => import('../containers/TestPage')),
     meta: {
-      title: '测试页'
+      title: '权限测试页',
+      rules: ['loginRequired']
     }
   }
 ]

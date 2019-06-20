@@ -5,6 +5,13 @@ import { Route, Switch } from 'react-router-dom'
 import routes from './api'
 import queryString from 'query-string'
 
+// 权限限制规则
+// const rules = {
+//   loginRequired () {
+//     return true
+//   }
+// }
+
 /**
  * @param  {Protected:登陆拦截（函数组建）}
  * @param  {...[type]}
