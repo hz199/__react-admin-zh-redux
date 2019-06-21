@@ -1,47 +1,67 @@
 
-import React, { useState } from 'react'
+import React from 'react'
 import Routes from './routes'
 import './App.less'
 import Menus from './components/Menus'
 import AdminHeader from './components/Layout/Header'
 import { Layout } from 'antd'
 import { connect } from 'react-redux'
+import { actionCreators } from '@/redux/modules/auth'
 
-const App = (props) => {
-  const [collapsed, setCollapsed] = useState(false)
-  const onCollapse = (collapsed) => {
-    setCollapsed(collapsed)
+class App extends React.Component {
+  constructor () {
+    super()
+
+    this.state = {
+      collapsed: false
+    }
   }
 
-  return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Layout.Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <div className="logo" />
-        <Menus {...props}></Menus>
-      </Layout.Sider>
-      <Layout>
-        <AdminHeader
-          userInfo={props.userInfo}
-        ></AdminHeader>
-        <Layout.Content style={{ margin: '16px 16px 0' }}>
-          <div style={{ padding: 24, background: '#fff', minHeight: '83vh' }}>
-            <Routes {...props}></Routes>
-          </div>
-        </Layout.Content>
-        <Layout.Footer style={{ textAlign: 'center' }}>react-admin ©2019 Created by H.Z</Layout.Footer>
+  componentDidMount () {
+    this.props.getUserInfo()
+  }
+
+  onCollapse = (collapsed) => {
+    this.setState({
+      collapsed
+    })
+  }
+
+  render () {
+    return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Layout.Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className="logo" />
+          <Menus {...this.props}></Menus>
+        </Layout.Sider>
+        <Layout>
+          <AdminHeader
+            userInfo={this.props.userInfo}
+          ></AdminHeader>
+          <Layout.Content style={{ margin: '16px 16px 0' }}>
+            <div style={{ padding: 24, background: '#fff', minHeight: '83vh' }}>
+              <Routes {...this.props}></Routes>
+            </div>
+          </Layout.Content>
+          <Layout.Footer style={{ textAlign: 'center' }}>react-admin ©2019 Created by H.Z</Layout.Footer>
+        </Layout>
       </Layout>
-    </Layout>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.auth.get('userInfo')
+    userInfo: state.auth.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    getUserInfo () {
+      dispatch(actionCreators.getUserInfo())
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

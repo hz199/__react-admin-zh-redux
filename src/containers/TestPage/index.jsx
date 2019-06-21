@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Test extends Component {
-  render() {
-    return (
-      <div>
-        Test
-      </div>
-    )
-  }
+const TestPage = () => {
+  return (
+    <div>
+      可以把 localStorage react-admin_user 删除再次刷新试下！
+      <pre>{
+        "<Redirect to='/login'/>"
+      }</pre>
+      <p>window.localStorage: react-admin_user</p>
+    </div>
+  )
 }
 
-export default Test
+export default TestPage

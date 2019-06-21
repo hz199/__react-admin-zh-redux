@@ -1,12 +1,11 @@
 import * as actionTypes from './actionTypes'
 import * as actionCreators from './actionCreators'
-import { fromJS } from 'immutable'
+// import { fromJS } from 'immutable'
 
 // 引入 immutableJS 把 store 变成不可修改的数据
-
-const defaultStore = fromJS({
+const defaultStore = {
   userInfo: {}
-})
+}
 
 /**
  * home store
@@ -18,7 +17,7 @@ const defaultStore = fromJS({
 const authReducer = (state = defaultStore, action) => {
   switch (action.type) {
     case actionTypes.SET_USER_INFO:
-      return state.set('userInfo', action.data)
+      return Object.assign({}, state, { userInfo: action.data })
     default:
       return state
   }

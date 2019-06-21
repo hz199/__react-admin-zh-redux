@@ -26,6 +26,8 @@ const Login = (props) => {
       if (result.code === 0) {
         props.history.push('/')
 
+        window.localStorage && window.localStorage.setItem('react-admin_user', JSON.stringify(result.data))
+
         props.setUserInfo(result.data)
       }
     }
@@ -72,7 +74,6 @@ const Login = (props) => {
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.auth.get('userInfo'),
   }
 }
 

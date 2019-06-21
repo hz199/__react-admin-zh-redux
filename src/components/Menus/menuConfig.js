@@ -7,7 +7,7 @@ const menus = [
   },
   {
     type: 'desktop',
-    title: '测试页',
+    title: '登录测试页',
     path: '/app/test'
   }
 ]

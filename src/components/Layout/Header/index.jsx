@@ -10,7 +10,7 @@ const menu = (
 )
 
 const AdminHeader = (props) => {
-  console.log(props)
+  const { userInfo } = props
 
   return (
     <Layout.Header style={{ background: '#fff', padding: 0 }} className="clearfix">
@@ -19,7 +19,7 @@ const AdminHeader = (props) => {
       </div>
       <div className="admin-header-right pull-right">
         <Dropdown overlay={menu}>
-          <Avatar src={props.avatar || ''} />
+          <Avatar src={userInfo.avatar || ''} />
         </Dropdown>
       </div>
     </Layout.Header>

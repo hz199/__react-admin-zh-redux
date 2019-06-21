@@ -6,16 +6,23 @@ import routes from './api'
 import queryString from 'query-string'
 
 // 权限限制规则
-// const rules = {
-//   loginRequired () {
-//     return true
-//   }
-// }
+const requiredRules = {
+  /** 
+   * 判断是否登录
+   * @return true 条件满足 通过权限验证
+   */
+  loginRequired (path) {
+    const localStorage = window.localStorage
+    const strReactAdminUserInfo = localStorage.getItem('react-admin_user') || '{}'
+    const reactAdminUserInfo = JSON.parse(strReactAdminUserInfo)
+    return !!reactAdminUserInfo.userName
+  }
+}
 
 /**
  * @param  {Protected:登陆拦截（函数组建）}
  * @param  {...[type]}
- * @return {还是一个Route组建，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}。注意当component和render两种方式共存时，优先使用component方式渲染
+ * @return {还是一个Route组建，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}
  */
 const Protected =  ({component: Comp, ...rest}) => {
   return (
@@ -24,6 +31,19 @@ const Protected =  ({component: Comp, ...rest}) => {
       document.title = title || 'react-admin'
 
       const { exact, path, meta, ...otherRest } = rest
+      if (meta.rules && meta.rules instanceof Array) {
+        const middlewares = meta.rules.map(item => requiredRules[item])
+        for (let i = 0; i < middlewares.length; i++) {
+          const result = middlewares[i](path)
+      
+          if (!result) {
+            // window.location.href = '/login'
+            // return
+            return <Redirect to='/login'/>
+          }
+        }
+      }
+
       return <Comp {...otherRest}/>
     }}/>
   )

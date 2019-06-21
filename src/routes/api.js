@@ -6,7 +6,8 @@ const routes = [
     path: '/app',
     component: asyncImport(() => import('../containers/Home')),
     meta: {
-      title: '首页'
+      title: '首页',
+      rules: ['loginRequired']
     }
   },
   {

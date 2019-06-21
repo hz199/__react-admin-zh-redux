@@ -25,8 +25,8 @@ function App(props) {
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
-    test: state.home.get('test'),
-    testAxiosData: state.home.get('testAxiosData')
+    test: state.home.test,
+    testAxiosData: state.home.testAxiosData
   }
 }
 
