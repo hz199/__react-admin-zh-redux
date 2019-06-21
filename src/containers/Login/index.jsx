@@ -24,11 +24,10 @@ const Login = (props) => {
       const result = await authServices.login(payload)
 
       if (result.code === 0) {
-        props.history.push('/')
-
         window.localStorage && window.localStorage.setItem('react-admin_user', JSON.stringify(result.data))
-
         props.setUserInfo(result.data)
+
+        props.history.push('/')
       }
     }
 
