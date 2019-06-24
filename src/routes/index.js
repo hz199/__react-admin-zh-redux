@@ -31,6 +31,7 @@ const Protected =  ({component: Comp, ...rest}) => {
       document.title = title || 'react-admin'
 
       const { exact, path, meta, ...otherRest } = rest
+
       if (meta.rules && meta.rules instanceof Array) {
         const middlewares = meta.rules.map(item => requiredRules[item])
         for (let i = 0; i < middlewares.length; i++) {
