@@ -4,6 +4,8 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import routes from './api'
 import queryString from 'query-string'
+// import { CSSTransition, TransitionGroup } from 'react-transition-group'
+// import './router.less'
 
 // 权限限制规则
 const requiredRules = {
@@ -21,7 +23,6 @@ const requiredRules = {
 
 /**
  * @param  {Protected:登陆拦截（函数组建）}
- * @param  {...[type]}
  * @return {还是一个Route组建，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}
  */
 const Protected =  ({component: Comp, ...rest}) => {

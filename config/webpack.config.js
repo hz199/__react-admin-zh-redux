@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -462,11 +463,11 @@ module.exports = function (webpackEnv) {
             {
               test: lessModuleRegex,
               use: getStyleLoaders({
-                  importLoaders: 2,
-                  modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
+                importLoaders: 2,
+                modules: true,
+                getLocalIdent: getCSSModuleLocalIdent,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+              },
                 'less-loader',
                 lessTheme
               ),
@@ -640,6 +641,13 @@ module.exports = function (webpackEnv) {
         silent: true,
         // The formatter is invoked directly in WebpackDevServerUtils during development
         formatter: isEnvProduction ? typescriptFormatter : undefined,
+      }),
+      // 开启 gzip 压缩 
+      isEnvProduction && new CompressionPlugin({
+        algorithm: 'gzip',//算法
+        test: /\.(js|css)$/,
+        threshold: 10240,
+        minRatio: 0.8,
       }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.

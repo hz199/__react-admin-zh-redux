@@ -59,6 +59,7 @@
     "react-loadable": "^5.5.0",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-transition-group": "^4.1.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-immutable": "^4.0.0",
@@ -76,8 +77,8 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "dev": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "dev": "cross-env GENERATE_SOURCEMAP=true node scripts/start.js",
+    "build": "cross-env GENERATE_SOURCEMAP=false node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
@@ -141,6 +142,8 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-import": "^1.12.0"
+    "babel-plugin-import": "^1.12.0",
+    "compression-webpack-plugin": "^3.0.0",
+    "cross-env": "^5.2.0"
   }
 }
