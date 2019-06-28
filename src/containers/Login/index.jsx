@@ -36,7 +36,6 @@ const Login = (props) => {
         <div className="login-form" >
           <div className="login-logo">
             <span>React Admin</span>
-            {/* <p>{ props.userInfo }</p> */}
           </div>
           <Form onSubmit={handleSubmit} style={{ maxWidth: '300px' }}>
             <FormItem>

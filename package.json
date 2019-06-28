@@ -79,7 +79,8 @@
   "scripts": {
     "dev": "cross-env GENERATE_SOURCEMAP=true node scripts/start.js",
     "build": "cross-env GENERATE_SOURCEMAP=false node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "sh": "bash deploy.sh"
   },
   "eslintConfig": {
     "extends": "react-app"

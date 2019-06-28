@@ -1,12 +1,12 @@
 
 import React from 'react'
-import { BrowserRouter , Route, Switch, Redirect } from 'react-router-dom' // BrowserRouter
+import { HashRouter , Route, Switch, Redirect } from 'react-router-dom' // BrowserRouter
 import App from './App'
 import NoFind from './containers/NoFind'
 import Login from './containers/Login'
 
 export default () => (
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
       <Route exact path='/' render={() => <Redirect to="/app" />} />
       <Route path='/app' component={App} />
@@ -14,5 +14,5 @@ export default () => (
       <Route exact path='/login' component={ Login } />
       <Route render={() => <Redirect to='/404'/>} />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 )
