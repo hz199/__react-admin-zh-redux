@@ -44,7 +44,7 @@ const Login = (props) => {
                 getFieldDecorator('userName', {
                   rules: [{ required: true, message: '请输入用户名！' }]
                 })(
-                  <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="管理员输入admin, 游客输入guest" />
+                  <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="随意填写" />
                 )
               }
             </FormItem>
@@ -53,7 +53,7 @@ const Login = (props) => {
                 getFieldDecorator('password', {
                   rules: [{ required: true, message: '请输入密码！' }]
                 })(
-                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="管理员输入admin, 游客输入guest" />
+                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="随意填写" />
                 )
               }
             </FormItem>
