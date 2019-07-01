@@ -18,7 +18,18 @@ const routes = [
       title: '权限测试页',
       rules: ['loginRequired']
     }
+  },
+  /* table start */
+  {
+    name: 'Table1',
+    path: '/app/tables/table1',
+    component: asyncImport(() => import('../containers/Tables/Table1')),
+    meta: {
+      title: '基础表格',
+      rules: ['loginRequired']
+    }
   }
+  /* table end */
 ]
 
 export default routes

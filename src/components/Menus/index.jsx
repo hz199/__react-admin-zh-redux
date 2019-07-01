@@ -24,7 +24,7 @@ const injectMenu = (menus) => {
           key={itemMenu.title}
           title={
             <span>
-              <Icon type={itemMenu.type} />
+              <Icon type={itemMenu.icon} />
               <span>{itemMenu.title}</span>
             </span>
           }
@@ -37,7 +37,7 @@ const injectMenu = (menus) => {
     } else {
       return (
         <Menu.Item key={itemMenu.path}>
-          <Icon type={itemMenu.type} />
+          <Icon type={itemMenu.icon} />
           <span>{itemMenu.title}</span>
         </Menu.Item>
       )
