@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes'
 import * as actionCreators from './actionCreators'
 
 const defaultStore = {
-  breadcrumbInfo: []
+  tableData: []
 }
 
 /**
@@ -12,13 +12,13 @@ const defaultStore = {
  * @return 新的 home store
  */
 
-const breadcrumbReducer = (state = defaultStore, action) => {
+const tableReducer = (state = defaultStore, action) => {
   switch (action.type) {
-    case actionTypes.SET_BREADCRUMB:
-      return Object.assign({}, state, { breadcrumbInfo: action.data })
+    case actionTypes.GET_TABLE_DATA:
+      return Object.assign({}, state, { tableData: action.data })
     default:
       return state
   }
 }
 
-export { breadcrumbReducer, actionTypes,  actionCreators}
+export { tableReducer, actionTypes,  actionCreators}
