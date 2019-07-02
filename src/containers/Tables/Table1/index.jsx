@@ -7,7 +7,7 @@ import { actionCreators } from '@/redux/modules/table'
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
-    reduxTableData () {
+    reduxTableData() {
       return state.table.tableData
     }
   }
@@ -16,11 +16,11 @@ const mapStateToProps = (state) => {
 // dispatch 映射到props
 const mapDispatchToProps = dispatch => {
   return {
-    setBreadcrumb (breadcrumbOption = []) {
+    setBreadcrumb(breadcrumbOption = []) {
       dispatch(breadcrumbAction.setBreadcrumb(breadcrumbOption))
     },
-    setTableData () {
-      dispatch(actionCreators.getTableData())
+    setTableData(pageOptions) {
+      dispatch(actionCreators.getTableData(pageOptions))
     }
   }
 }
@@ -65,10 +65,26 @@ class Table1 extends Component {
     setTableData()
   }
 
+  pageChange = (currentPage) => {
+    this.props.setTableData({
+      currentPage
+    })
+  }
+
   render() {
     return (
       <div>
-        <Table columns={tableColumns} dataSource={this.props.reduxTableData()} />
+        <Table
+          pagination={{
+            total: 200,
+            showQuickJumper: true,
+            onChange: this.pageChange,
+            showSizeChanger: true
+          }}
+          bordered
+          columns={tableColumns}
+          dataSource={this.props.reduxTableData()}
+        />
       </div>
     )
   }

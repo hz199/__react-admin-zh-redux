@@ -8,7 +8,7 @@ export const setTableData = (data) => {
   }
 }
 
-export const getTableData = (params = {}) => {
+export const getTableData = (params = {currentPage: 1}) => {
   return (dispatch, getState) => {
     tableServices.getTable1(params).then((res) => {
       dispatch(setTableData(res.data.list))
