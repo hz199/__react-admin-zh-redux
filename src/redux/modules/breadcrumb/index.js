@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes'
 import * as actionCreators from './actionCreators'
 
 const defaultStore = {
-  breadcrumb: {}
+  breadcrumbInfo: []
 }
 
 /**
@@ -15,7 +15,7 @@ const defaultStore = {
 const breadcrumbReducer = (state = defaultStore, action) => {
   switch (action.type) {
     case actionTypes.SET_BREADCRUMB:
-      return Object.assign({}, state, { breadcrumb: action.data })
+      return Object.assign({}, state, { breadcrumbInfo: action.data })
     default:
       return state
   }
