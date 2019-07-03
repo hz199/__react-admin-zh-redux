@@ -25,32 +25,31 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const tableColumns = [
-  {
-    title: '中文名',
-    dataIndex: 'nameCN',
-    key: 'nameCN'
-  },
-  {
-    title: '英文名',
-    dataIndex: 'nameEN',
-    key: 'nameEN'
-  },
-  {
-    title: '地址',
-    dataIndex: 'county',
-    key: 'county'
-  },
-  {
-    title: '时间',
-    dataIndex: 'timer',
-    key: 'timer'
-  }
-]
-
 /***********************************************************************/
 @connect(mapStateToProps, mapDispatchToProps)
 class Table1 extends Component {
+  static tableColumns = [
+    {
+      title: '中文名',
+      dataIndex: 'nameCN',
+      key: 'nameCN'
+    },
+    {
+      title: '英文名',
+      dataIndex: 'nameEN',
+      key: 'nameEN'
+    },
+    {
+      title: '地址',
+      dataIndex: 'county',
+      key: 'county'
+    },
+    {
+      title: '时间',
+      dataIndex: 'timer',
+      key: 'timer'
+    }
+  ]
 
   componentDidMount() {
     const { setBreadcrumb, setTableData } = this.props
@@ -68,7 +67,7 @@ class Table1 extends Component {
   render() {
     return (
       <div>
-        <Table columns={tableColumns} dataSource={this.props.reduxTableData()} />
+        <Table columns={Table1.tableColumns} dataSource={this.props.reduxTableData()} />
       </div>
     )
   }
