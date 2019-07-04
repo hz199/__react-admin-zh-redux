@@ -4,7 +4,6 @@ import { Table } from 'antd'
 import { actionCreators as breadcrumbAction } from '@/redux/modules/breadcrumb'
 import { actionCreators } from '@/redux/modules/table'
 
-// 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
     reduxTableData() {
@@ -13,7 +12,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-// dispatch 映射到props
 const mapDispatchToProps = dispatch => {
   return {
     setBreadcrumb(breadcrumbOption = []) {
