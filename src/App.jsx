@@ -7,6 +7,7 @@ import AdminHeader from './components/Layout/Header'
 import { Layout } from 'antd'
 import { connect } from 'react-redux'
 import { actionCreators } from '@/redux/modules/auth'
+import LoadingBar from './components/LoadingBar'
 
 class App extends React.Component {
   constructor () {
@@ -19,6 +20,7 @@ class App extends React.Component {
 
   componentDidMount () {
     this.props.getUserInfo()
+    LoadingBar.renderElement()
   }
 
   onCollapse = (collapsed) => {

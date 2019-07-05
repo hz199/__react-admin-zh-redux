@@ -1,6 +1,15 @@
 
-.text-overflow {
+.text-overflow() {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.clearfix() {
+  &::before,
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+    zoom: 1;
+  }
 }
