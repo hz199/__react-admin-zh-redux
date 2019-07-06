@@ -3,26 +3,46 @@ import ReactDOM from 'react-dom'
 import './index.less'
 
 export default class LoadingBar extends Component {
+  // 当前LoadingBar实例
+  _containerRef = null
+  // 插入LoadingBar父级元素
+  _currentNodeRef = null
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
 
   componentWillUnmount() {
     this.destroy()
-    // clearTimeout(this.timer);
   }
 
   static renderElement = () => {
     const container = document.createElement('div')
-    document.body.appendChild(container)
-    const _message = ReactDOM.render(
+    const currentNode = document.body.appendChild(container)
+    const _loadingBar = ReactDOM.render(
       <LoadingBar/>,
       container
     )
-    // _message._containerRef = container
-    // _message._currentNodeRef = currentNode
-    console.log(_message)
+    if (_loadingBar) {
+      _loadingBar._containerRef = container
+      _loadingBar._currentNodeRef = currentNode
+      return {
+        destroy: _loadingBar.destroy
+      }
+    }
+    return {
+      destroy: () => {}
+    }
   }
 
   destroy = () => {
-
+    // if (this._containerRef) {
+    // 销毁指定容器内的所有React节点
+    //   ReactDOM.unmountComponentAtNode(this._containerRef)
+    // }
+    if (this._currentNodeRef) {
+      this._currentNodeRef.remove()
+    }
   }
 
   render() {
