@@ -2,6 +2,11 @@ import React, { Component, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import './index.less'
 
+// 变量接收上次的 LoadingBar
+let currentLoadingBar = null
+// 动画结束后 销毁组件的间隔
+let duration = 500
+
 export default class LoadingBar extends Component {
   // 当前LoadingBar实例
   _containerRef = null
@@ -40,8 +45,15 @@ export default class LoadingBar extends Component {
   }
 
   static start = () => {
+    // 先把上一次组件卸载 在重新开始一个新的组件
+    if (currentLoadingBar) {
+      currentLoadingBar.destroy()
+    }
+
     const currentElement = this.renderElement()
-    this._currentElement = currentElement
+    LoadingBar._currentElement = currentElement
+    // 变量接收当前组件实例
+    currentLoadingBar = currentElement
 
     let percent = -100
     LoadingBar._timer = setInterval(() => {
@@ -50,20 +62,60 @@ export default class LoadingBar extends Component {
         currentElement.clearTimer()
       }
       currentElement.update({
-          percent: percent,
-          currentBgColor: 'primary',
+        percent: percent,
+        currentBgColor: 'primary',
       })
-  }, 200)
+    }, 200)
 
     return currentElement
   }
 
   static finish = () => {
-    console.log('finish')
+    if (LoadingBar._currentElement) {
+      LoadingBar._currentElement.clearTimer()
+
+      LoadingBar._currentElement.update({
+        percent: 100,
+        currentBgColor: 'success',
+      })
+
+      // 执行销毁组件程序
+      setTimeout(() => {
+        LoadingBar._currentElement.destroy()
+      }, duration)
+    } else {
+      const currentElement = this.renderElement()
+      currentElement.update({
+        percent: 0,
+        currentBgColor: 'success',
+      })
+
+      setTimeout(() => { currentElement.destroy() }, duration)
+    }
   }
 
   static error = () => {
-    console.log('error')
+    if (LoadingBar._currentElement) {
+      LoadingBar._currentElement.clearTimer()
+
+      LoadingBar._currentElement.update({
+        percent: 100,
+        currentBgColor: 'error',
+      })
+
+      // 执行销毁组件程序
+      setTimeout(() => {
+        LoadingBar._currentElement.destroy()
+      }, duration)
+    } else {
+      const currentElement = this.renderElement()
+      currentElement.update({
+        percent: 0,
+        currentBgColor: 'error',
+      })
+
+      setTimeout(() => { currentElement.destroy() }, duration)
+    }
   }
 
   destroy = () => {
@@ -74,6 +126,7 @@ export default class LoadingBar extends Component {
     if (this._currentNodeRef) {
       this._currentNodeRef.remove()
     }
+    LoadingBar._currentElement = null
   }
 
   clearTimer = () => {

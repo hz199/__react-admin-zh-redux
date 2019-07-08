@@ -10,10 +10,13 @@
   &__progress {
     width: 100%;
     height: 2px;
-    transition: transform 0.3s;
+    transition: transform 0.5s;
   }
   &--primary {
     background: @loadingBar-bgColor;
+  }
+  &--success {
+    background: @loadingBar-bgColor-success;
   }
   &--error {
     background: @loadingBar-bgColor-error;
@@ -23,7 +26,7 @@
     right: 0;
     width: 200px;
     height: 100%;
-    box-shadow: 0 0 10px #fceb01, 0 0 5px #f4f803;
+    box-shadow: 0 0 5px #fceb01, 0 0 0px #f4f803;
     opacity: 1;
     transform: rotate(3deg) translateY(-4px);
   }
@@ -45,6 +48,9 @@
   }
   &__icon--primary {
     color: @loadingBar-bgColor;
+  }
+  &__icon--success {
+    color: @loadingBar-bgColor-success;
   }
   &__icon--error {
     color: @loadingBar-bgColor-error;
