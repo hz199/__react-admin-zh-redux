@@ -8,7 +8,7 @@ function asyncImport(loader) {
     else if (props.pastDelay)
       return (
         <div>
-          正在加载数据...
+          正在加载组件数据...
         </div>
       )
     else

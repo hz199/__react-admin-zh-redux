@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'antd'
 import { actionCreators as breadcrumbAction } from '@/redux/modules/breadcrumb'
@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 
 /***********************************************************************/
 @connect(mapStateToProps, mapDispatchToProps)
-class Table1 extends Component {
+class Table1 extends PureComponent {
   static tableColumns = [
     {
       title: '中文名',
