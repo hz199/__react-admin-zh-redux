@@ -28,8 +28,19 @@ const routes = [
       title: '基础表格',
       rules: ['loginRequired']
     }
-  }
+  },
   /* table end */
+  /* ComponentsPage start */
+  {
+    name: 'LoadingBar',
+    path: '/app/components/loadingBar',
+    component: asyncImport(() => import('../containers/ComponentsPage/LoadingBar.jsx')),
+    meta: {
+      title: 'LoadingBar',
+      rules: ['loginRequired']
+    }
+  }
+  /* ComponentsPage end */
 ]
 
 export default routes

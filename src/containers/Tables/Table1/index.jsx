@@ -69,6 +69,7 @@ class Table1 extends Component {
   }
 
   render() {
+    const tableData = this.props.reduxTableData()
     return (
       <div>
         <Table
@@ -78,9 +79,10 @@ class Table1 extends Component {
             onChange: this.pageChange,
             showSizeChanger: true
           }}
+          loading={tableData.length === 0}
           bordered
           columns={Table1.tableColumns}
-          dataSource={this.props.reduxTableData()}
+          dataSource={tableData}
         />
       </div>
     )

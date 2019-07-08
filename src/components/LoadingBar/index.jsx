@@ -81,7 +81,7 @@ export default class LoadingBar extends Component {
 
       // 执行销毁组件程序
       setTimeout(() => {
-        LoadingBar._currentElement.destroy()
+        LoadingBar._currentElement && LoadingBar._currentElement.destroy()
       }, duration)
     } else {
       const currentElement = this.renderElement()
@@ -105,7 +105,7 @@ export default class LoadingBar extends Component {
 
       // 执行销毁组件程序
       setTimeout(() => {
-        LoadingBar._currentElement.destroy()
+        LoadingBar._currentElement && LoadingBar._currentElement.destroy()
       }, duration)
     } else {
       const currentElement = this.renderElement()

@@ -21,6 +21,17 @@ const menus = [
       }
     ]
   },
+  {
+    icon: 'compass',
+    title: '组件',
+    SubMenu: [
+      {
+        icon: 'loading-3-quarters',
+        path: '/app/components/loadingBar',
+        title: 'LoadingBar'
+      }
+    ]
+  },
 ]
 
 export default menus
