@@ -29,11 +29,16 @@ const TestPage = (props) => {
     ])
   }, [setBreadcrumb])
 
-  const handleClick = () => {
-    const dom = LoadingBar.renderElement()
-    setTimeout(() => {
-      // dom.destroy()
-    }, 2000)
+  const handleClickStart = () => {
+    LoadingBar.start()
+  }
+
+  const handleClickFinish  = () => {
+    LoadingBar.finish()
+  }
+
+  const handleClickError = () => {
+    LoadingBar.error()
   }
 
   return (
@@ -44,7 +49,9 @@ const TestPage = (props) => {
       }</pre>
       <p>window.localStorage: react-admin_user</p>
 
-      <Button onClick={handleClick}>点击</Button>
+      <Button onClick={handleClickStart}>点击start</Button>
+      <Button onClick={handleClickFinish}>点击finish</Button>
+      <Button onClick={handleClickError}>点击error</Button>
     </div>
   )
 }
