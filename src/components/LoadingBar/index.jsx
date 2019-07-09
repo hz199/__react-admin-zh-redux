@@ -40,7 +40,7 @@ export default class LoadingBar extends Component {
 
     _loadingBar._containerRef = container
     _loadingBar._currentNodeRef = currentNode
-    
+
     return _loadingBar
   }
 
