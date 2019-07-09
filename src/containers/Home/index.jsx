@@ -8,11 +8,15 @@ import {
 } from 'antd'
 import NumberCard from './components/NumberCard'
 import { actionCreators as breadcrumbAction } from '@/redux/modules/breadcrumb'
+import { actionCreators } from '@/redux/modules/home'
 import LineBarChart from '@/components/Echarts/LineBarChart'
 
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
   return {
+    homeParams () {
+      return state.home.homeData
+    }
   }
 }
 
@@ -21,6 +25,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setBreadcrumb (breadcrumbOption = []) {
       dispatch(breadcrumbAction.setBreadcrumb(breadcrumbOption))
+    },
+    setHomeData (params) {
+      dispatch(actionCreators.ajaxHomeData(params))
     }
   }
 }
@@ -30,55 +37,20 @@ class App extends Component {
 
   componentDidMount() {
     this.props.setBreadcrumb([])
+    // 获取首页数据
+    this.props.setHomeData()
   }
 
   render () {
-    const numberCards = [
-      {
-        icon: 'pay-circle-o',
-        color: 'red',
-        title: 'Online Review',
-        number: 2781,
-      },
-      {
-        icon: 'team',
-        color: 'red',
-        title: 'New Customers',
-        number: 3241,
-      },
-      {
-        icon: 'message',
-        color: 'red',
-        title: 'Active Projects',
-        number: 253,
-      },
-      {
-        icon: 'shopping-cart',
-        color: 'red',
-        title: 'Referrals',
-        number: 4324,
-      },
-    ].map((item, key) => (
+    const homeParams = this.props.homeParams()
+
+    const numberCards = homeParams.numberCards.map((item, key) => (
       <Col key={key} lg={6} md={12}>
         <NumberCard {...item} />
       </Col>
     ))
 
-    const LineBarChartOption = {
-      title: '测试标题11',
-      series: [
-        {
-          name: '最新注册量',
-          type: 'bar',
-          data: [200, 382, 102, 267, 186, 315, 316]
-        },
-        {
-          name: '注册总量',
-          type: 'line',
-          data: [393, 438, 485, 631, 689, 824, 987]
-        }
-      ]
-    }
+    const LineBarChartOption = homeParams.LineBarChartOption
 
     return (
       <div className="home">

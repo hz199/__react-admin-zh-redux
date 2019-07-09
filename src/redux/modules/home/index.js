@@ -4,7 +4,12 @@ import * as actionCreators from './actionCreators'
 
 // 引入 immutableJS 把 store 变成不可修改的数据
 const defaultStore = {
-  test: 11
+  homeData: {
+    numberCards: [],
+    LineBarChartOption: {
+      series: []
+    }
+  }
 }
 
 /**
@@ -16,8 +21,8 @@ const defaultStore = {
 
 const homeReducer = (state = defaultStore, action) => {
   switch (action.type) {
-    case actionTypes.BTN_CLICK:
-      return Object.assign({}, state, { test: action.data })
+    case actionTypes.SET_HOME_DATA:
+      return Object.assign({}, state, { homeData: action.data })
     default:
       return state
   }

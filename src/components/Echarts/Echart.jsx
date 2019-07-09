@@ -21,7 +21,7 @@ class Chart extends PureComponent {
     bind(this.el, throttle(this.resize, 100))
   }
   componentDidUpdate() {
-    // this.setOption(this.props.option)
+    this.setOption()
   }
   componentWillUnmount() {
     this.dispose()
