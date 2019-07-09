@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { 
+import './index.less'
+import {
   Row,
   Col,
   Card
 } from 'antd'
 import NumberCard from './components/NumberCard'
-import './index.less'
 import { actionCreators as breadcrumbAction } from '@/redux/modules/breadcrumb'
+import LineBarChart from '@/components/Echarts/LineBarChart'
 
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
@@ -63,13 +64,29 @@ class App extends Component {
       </Col>
     ))
 
+    const LineBarChartOption = {
+      title: '测试标题11',
+      series: [
+        {
+          name: '最新注册量',
+          type: 'bar',
+          data: [200, 382, 102, 267, 186, 315, 316]
+        },
+        {
+          name: '注册总量',
+          type: 'line',
+          data: [393, 438, 485, 631, 689, 824, 987]
+        }
+      ]
+    }
+
     return (
       <div className="home">
         <Row gutter={24}>
           {numberCards}
           <Col lg={18} md={24}>
             <Card>
-              Echarts
+              <LineBarChart options={LineBarChartOption}></LineBarChart>
             </Card>
           </Col>
           <Col lg={6} md={24}>
