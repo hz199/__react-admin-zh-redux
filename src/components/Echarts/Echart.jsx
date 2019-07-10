@@ -4,8 +4,8 @@ import echarts from 'echarts/lib/echarts'
 import PropTypes from 'prop-types'
 import 'echarts/lib/component/tooltip' // 提示框组件
 import 'echarts/lib/component/title' // 标题组件
-import 'echarts/lib/component/grid'
-import 'echarts/lib/component/legend'
+import 'echarts/lib/component/grid' // 布局
+import 'echarts/lib/component/legend' // 标注
 import { bind, clear } from 'size-sensor'
 // import 'zrender/lib/svg/svg' // svg 渲染器
 import throttle from '../../utils/throttle.js'

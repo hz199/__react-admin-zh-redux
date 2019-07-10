@@ -64,12 +64,12 @@ class App extends Component {
           <Col lg={6} md={24}>
             <Row gutter={24}>
               <Col lg={24} md={12}>
-                <Card>
-                  O(∩_∩)O哈哈~
+                <Card className="card card--margin">
+                  5
                 </Card>
               </Col>
               <Col lg={24} md={12}>
-                <Card>
+                <Card className="card">
                   哈哈哈
                 </Card>
               </Col>

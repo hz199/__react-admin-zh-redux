@@ -5,7 +5,7 @@ import './index.less'
 // 变量接收上次的 LoadingBar
 let currentLoadingBar = null
 // 动画结束后 销毁组件的间隔
-let duration = 500
+let duration = 800
 
 export default class LoadingBar extends Component {
   // 当前LoadingBar实例

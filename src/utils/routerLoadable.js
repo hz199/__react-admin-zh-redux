@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import loadable from 'react-loadable'
 
 function asyncImport(loader) {
