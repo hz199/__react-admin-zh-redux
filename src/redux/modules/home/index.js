@@ -8,7 +8,12 @@ const defaultStore = {
     numberCards: [],
     LineBarChartOption: {
       series: []
-    }
+    },
+    pieOptions: {
+      datas: []
+    },
+    orderTable: [],
+    CommentList: []
   }
 }
 

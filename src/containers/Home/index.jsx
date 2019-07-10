@@ -7,9 +7,12 @@ import {
   Card
 } from 'antd'
 import NumberCard from './components/NumberCard'
+import OrderTable from './components/OrderTable'
+import CommentList from './components/CommentList'
 import { actionCreators as breadcrumbAction } from '@/redux/modules/breadcrumb'
 import { actionCreators } from '@/redux/modules/home'
 import LineBarChart from '@/components/Echarts/LineBarChart'
+import Pie from '@/components/Echarts/Pie'
 
 // 把redux 里面的数据映射到 props
 const mapStateToProps = (state) => {
@@ -51,6 +54,9 @@ class App extends Component {
     ))
 
     const LineBarChartOption = homeParams.LineBarChartOption
+    const pieOption = homeParams.pieOptions
+    const orderTableData = homeParams.orderTable
+    const commentListData = homeParams.CommentList
 
     return (
       <div className="home">
@@ -65,15 +71,25 @@ class App extends Component {
             <Row gutter={24}>
               <Col lg={24} md={12}>
                 <Card className="card card--margin">
-                  5
+                  <Pie options={pieOption} style={{height: "162px"}}></Pie>
                 </Card>
               </Col>
               <Col lg={24} md={12}>
-                <Card className="card">
-                  哈哈哈
+                <Card className="card card1">
+                  随便写点字吧，凑点字数，好看点。随便写点字吧，凑点字数，好看点。随便写点字吧，凑点字数，好看点。随便写点字吧，凑点字数，好看点。
                 </Card>
               </Col>
             </Row>
+          </Col>
+          <Col lg={12} md={24}>
+            <Card bordered={false}>
+              <OrderTable dataSource={orderTableData}></OrderTable>
+            </Card>
+          </Col>
+          <Col lg={12} md={24}>
+            <Card bordered={false}>
+              <CommentList dataSource={commentListData}></CommentList>
+            </Card>
           </Col>
         </Row>
       </div>

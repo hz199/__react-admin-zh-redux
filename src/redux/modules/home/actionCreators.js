@@ -6,7 +6,7 @@ export const setHomeData = (data) => ({
   data
 })
 
-export const ajaxHomeData = (params = {currentPage: 1}) => {
+export const ajaxHomeData = (params) => {
   return (dispatch, getState) => {
     homeServices.getHomeData(params).then((res) => {
       dispatch(setHomeData(res.data))
