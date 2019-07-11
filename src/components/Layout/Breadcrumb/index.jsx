@@ -8,7 +8,7 @@ const AdminBreadcrumb = (props) => {
   const breadcrumbs = [
     {
       name: '首页',
-      path: '/'
+      path: '/app'
     },
     ...props.getBreadcrumbInfo()
   ]
