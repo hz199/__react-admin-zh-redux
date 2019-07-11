@@ -4,8 +4,8 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import routes from './api'
 import queryString from 'query-string'
-// import { CSSTransition, TransitionGroup } from 'react-transition-group'
-// import './router.less'
+import { connect } from 'react-redux'
+import { actionCreators } from '../redux/modules/breadcrumb'
 
 // 权限限制规则
 const requiredRules = {
@@ -26,12 +26,12 @@ const requiredRules = {
  * @return {还是一个Route组建，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}
  */
 const Protected =  ({component: Comp, ...rest}) => {
+
+  const { exact, path, meta, setTagPage, ...otherRest } = rest
   return (
     <Route {...rest} render={ () => {
       const { title } = rest.meta
       document.title = title || 'react-admin'
-
-      const { exact, path, meta, ...otherRest } = rest
 
       if (meta.rules && meta.rules instanceof Array) {
         const middlewares = meta.rules.map(item => requiredRules[item])
@@ -46,6 +46,8 @@ const Protected =  ({component: Comp, ...rest}) => {
         }
       }
 
+      // 设置 redux tagPage 当前路径
+      setTagPage({path: path, title: meta.title})
       return <Comp {...otherRest}/>
     }}/>
   )
@@ -73,5 +75,10 @@ const routerApp = (props) => {
   )
 }
 
-export default routerApp
+export default connect(() => ({}), (dispatch) => ({
+  // 设置导航标签页
+  setTagPage (currentRouter = {}) {
+    dispatch(actionCreators.setTagPage(currentRouter))
+  }
+}))(routerApp)
 // Switch 里面不应该有其他的标签

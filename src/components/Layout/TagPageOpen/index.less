@@ -1,0 +1,74 @@
+@zh-tag-size: 32px;
+
+.TagPageOpen {
+  width: 100%;
+  height: 42px;
+  margin-top: 8px;
+  padding: 3px;
+  background: #ffffff;
+  box-shadow: 0 0 10px 3px rgba(0,0,0,.2);
+
+  &__col-2 {
+    line-height: @zh-tag-size;
+    text-align: center;
+  }
+
+  &__scroll-view {
+    width: 100%;
+    overflow: hidden;
+  }
+  &__scroll-body {
+    // width: 100000px;
+    // width: inherit;
+    display: flex;
+    line-height: 26px;
+    position: relative;
+    left: 0;
+    transition: left 1s ease;
+  }
+
+  // tag
+  .zh-tag {
+    display: inline-block;
+    height: @zh-tag-size;
+    line-height: @zh-tag-size;
+    margin: 2px 4px 2px 0;
+    padding: 0 8px;
+    border: 1px solid #e8eaec;
+    border-radius: 3px;
+    font-size: 12px;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    &__text {
+      color: #515a6e;
+      font-size: 12px;
+      line-height: @zh-tag-size;
+      vertical-align: 1px;
+    }
+    &__close {
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      color: #cacaca;
+      margin-left: 10px;
+    }
+    &__dot {
+      height: 12px;
+      width: 12px;
+      line-height: @zh-tag-size;
+      color: #515a6e;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    &__dot--default {
+      background: #e8eaec;
+    }
+    &__dot--primary {
+      background: #2d8cf0;
+    }
+  }
+}

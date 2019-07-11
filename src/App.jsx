@@ -4,6 +4,7 @@ import Routes from './routes'
 import './App.less'
 import Menus from './components/Menus'
 import AdminHeader from './components/Layout/Header'
+import TagPageOpen from './components/Layout/TagPageOpen'
 import { Layout } from 'antd'
 import { connect } from 'react-redux'
 import { actionCreators } from '@/redux/modules/auth'
@@ -38,7 +39,8 @@ class App extends React.Component {
           <AdminHeader
             userInfo={this.props.userInfo}
           ></AdminHeader>
-          <Layout.Content style={{ margin: '16px 16px 0' }}>
+          <TagPageOpen/>
+          <Layout.Content style={{ margin: '8px 16px 0' }}>
             <div style={{ padding: 24, background: '#fff', minHeight: '83vh' }}>
               <Routes {...this.props}></Routes>
             </div>
