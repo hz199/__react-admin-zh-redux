@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const Tag = (props) => {
   return (
     <div className="zh-tag" ref={tag => {
-      props.color === 'primary' && props.onRef(tag)
+      props.color === 'primary' && tag && props.onRef(tag)
     }}>
       <span className={`zh-tag__dot zh-tag__dot--${props.color ? props.color : 'default'}`}></span>
       <span className="zh-tag__text">{props.children}</span>

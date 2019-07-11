@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Row, Col, Dropdown, Button, Menu } from 'antd'
@@ -17,9 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 @connect(mapStateToProps, mapDispatchToProps)
-class TagPageOpen extends PureComponent {
-  // 当前tag
+class TagPageOpen extends Component {
+  // 当前tag ref
   _currentTag = null
+  // 可视区域ref
+  _scrollView = null
   constructor () {
     super()
     this.state = {
@@ -28,8 +30,15 @@ class TagPageOpen extends PureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(nextProps.tagPage)
+  shouldComponentUpdate (nextProps, nextState) {
+    if (this.props.tagPage === nextProps.tagPage) {
+      return false
+    }
+    return true
+  }
+
+  componentDidUpdate (nextProps, nextState) {
+    console.log(this._currentTag, this._scrollView, 1111)
   }
 
   // 标签移动
@@ -56,20 +65,6 @@ class TagPageOpen extends PureComponent {
   }
 
   render() {
-    const tags = this.props.tagPage.map((item) => {
-      return (
-        <Tag
-          onRef={(tag) => {
-            this._currentTag = tag
-          }}
-          color={item.color}
-          closable={item.flag}
-          key={item.path}>
-          {item.title}
-        </Tag>
-      )
-    })
-
     const menus = (
       <Menu>
         <Menu.Item>
@@ -85,9 +80,23 @@ class TagPageOpen extends PureComponent {
       <div className="TagPageOpen">
         <Row>
           <Col span={22}>
-            <div className="TagPageOpen__scroll-view">
+            <div className="TagPageOpen__scroll-view" ref={view => this._scrollView = view}>
               <div className="TagPageOpen__scroll-body" style={{left: `${this.state.scrollBodyLeft}px`}}>
-                {tags}
+                {
+                  this.props.tagPage.map((item) => {
+                    return (
+                      <Tag
+                        onRef={(tag) => {
+                          this._currentTag = tag
+                        }}
+                        color={item.color}
+                        closable={item.flag}
+                        key={item.path}>
+                        {item.title}
+                      </Tag>
+                    )
+                  })
+                }
               </div>
             </div>
           </Col>
