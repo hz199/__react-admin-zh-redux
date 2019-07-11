@@ -47,7 +47,6 @@ class TagPageOpen extends Component {
 
     if (tag.offsetLeft < -scrollBodyLeft) {
       // 标签在可视区域左侧
-      
       this.setState({
         scrollBodyLeft: -tag.offsetLeft + 10
       })
