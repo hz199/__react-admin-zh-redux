@@ -9,7 +9,7 @@ const Tag = (props) => {
     }}>
       <span className={`zh-tag__dot zh-tag__dot--${props.color ? props.color : 'default'}`}></span>
       <span className="zh-tag__text">{props.children}</span>
-      {!props.closable ? <Icon className="zh-tag__close" type="close" /> : null}
+      {!props.closable ? <Icon onClick={() => { props.onClose && props.onClose() }} className="zh-tag__close" type="close" /> : null}
     </div>
   )
 }
@@ -17,7 +17,8 @@ const Tag = (props) => {
 Tag.propTypes = {
   closable: PropTypes.bool,
   color: PropTypes.oneOf(['default', 'primary']),
-  onRef: PropTypes.func
+  onRef: PropTypes.func,
+  onClose: PropTypes.func
 }
 
 export default Tag

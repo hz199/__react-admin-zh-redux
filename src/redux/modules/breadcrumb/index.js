@@ -48,6 +48,16 @@ const setTagPage = (state, data) => {
   return Object.assign({}, state, {tagPage: initTagPage})
 }
 
+// 删除全部
+const deleteAllTag = (state) => {
+  return state
+}
+
+// 删除其他
+const deleteOtherTag = (state) => {
+  return state
+}
+
 /**
  * home store
  * @param [state]
@@ -61,6 +71,10 @@ const breadcrumbReducer = (state = defaultStore, action) => {
       return Object.assign({}, state, { breadcrumbInfo: action.data })
     case actionTypes.SET_TAG_PAGE:
       return setTagPage(state, action.data)
+    case actionTypes.DELETE_ALL_TAG:
+      return deleteAllTag(state)
+    case actionTypes.DELETE_OTHER_TAG:
+      return deleteOtherTag(state)
     default:
       return state
   }

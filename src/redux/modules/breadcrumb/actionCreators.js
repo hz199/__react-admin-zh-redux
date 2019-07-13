@@ -9,3 +9,11 @@ export const setTagPage = (data) => ({
   type: actionTypes.SET_TAG_PAGE,
   data
 })
+
+export const deleteAllTag = () => ({
+  type: actionTypes.DELETE_ALL_TAG
+})
+
+export const deleteOtherTag = (data) => ({
+  type: actionTypes.DELETE_OTHER_TAG
+})

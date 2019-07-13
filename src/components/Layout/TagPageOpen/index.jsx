@@ -30,15 +30,14 @@ class TagPageOpen extends Component {
     }
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
+  shouldComponentUpdate (nextProps) {
     if (this.props.tagPage === nextProps.tagPage) {
       return false
     }
     return true
   }
 
-  componentDidUpdate (nextProps, nextState) {
-    console.log(this._currentTag, this._scrollView, 1111)
+  componentDidUpdate () {
     this.moveToTag(this._currentTag, this._scrollView)
   }
 
@@ -49,7 +48,7 @@ class TagPageOpen extends Component {
     if (tag.offsetLeft < -scrollBodyLeft) {
       // 标签在可视区域左侧
       this.setState({
-        scrollBodyLeft: -tag.offsetLeft + 10
+        scrollBodyLeft: (-tag.offsetLeft + 10) < 0 ? 0 : (-tag.offsetLeft + 10)
       })
     } else if (tag.offsetLeft + 10 > -scrollBodyLeft && tag.offsetLeft + tag.offsetWidth < -scrollBodyLeft + scrollView.offsetWidth - 100) {
       // 标签在可视区域
@@ -64,13 +63,30 @@ class TagPageOpen extends Component {
     }
   }
 
+  deleteOne = (payload) => {
+    console.log(payload)
+  }
+
+  deleteMenu = ({ key }) => {
+    switch (key) {
+      case 'all':
+        
+        break
+      case 'other':
+      
+        break
+      default:
+        break
+    }
+  }
+
   render() {
     const menus = (
-      <Menu>
-        <Menu.Item>
+      <Menu onClick={this.deleteMenu}>
+        <Menu.Item key="all">
           关闭所有
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="other">
           关闭其他
         </Menu.Item>
       </Menu>
@@ -88,6 +104,9 @@ class TagPageOpen extends Component {
                       <Tag
                         onRef={(tag) => {
                           this._currentTag = tag
+                        }}
+                        onClose={() => {
+                          this.deleteOne(item)
                         }}
                         color={item.color}
                         closable={item.flag}
