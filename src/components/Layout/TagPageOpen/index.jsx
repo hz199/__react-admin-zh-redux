@@ -39,10 +39,11 @@ class TagPageOpen extends Component {
 
   componentDidUpdate (nextProps, nextState) {
     console.log(this._currentTag, this._scrollView, 1111)
+    this.moveToTag(this._currentTag, this._scrollView)
   }
 
   // 标签移动
-  moveToTag (tag, tagViewWidth) {
+  moveToTag (tag, scrollView) {
     const { scrollBodyLeft } = this.state
 
     if (tag.offsetLeft < -scrollBodyLeft) {
@@ -50,15 +51,15 @@ class TagPageOpen extends Component {
       this.setState({
         scrollBodyLeft: -tag.offsetLeft + 10
       })
-    } else if (tag.offsetLeft + 10 > -scrollBodyLeft && tag.offsetLeft + tag.offsetWidth < -scrollBodyLeft + tagViewWidth - 100) {
+    } else if (tag.offsetLeft + 10 > -scrollBodyLeft && tag.offsetLeft + tag.offsetWidth < -scrollBodyLeft + scrollView.offsetWidth - 100) {
       // 标签在可视区域
       this.setState({
-        scrollBodyLeft: Math.min(0, tagViewWidth - 100 - tag.offsetWidth - tag.offsetLeft - 20)
+        scrollBodyLeft: Math.min(0, scrollView.offsetWidth - 100 - tag.offsetWidth - tag.offsetLeft - 20)
       })
     } else {
       // 标签在可视区域右侧
       this.setState({
-        scrollBodyLeft: -(tag.offsetLeft - (tagViewWidth - 100 - tag.offsetWidth) + 20)
+        scrollBodyLeft: -(tag.offsetLeft - (scrollView.offsetWidth - 100 - tag.offsetWidth) + 20)
       })
     }
   }
