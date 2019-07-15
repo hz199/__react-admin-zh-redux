@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Row, Col, Dropdown, Button, Menu } from 'antd'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import Tag from './Tag'
 import { actionCreators } from '@/redux/modules/breadcrumb'
 
@@ -42,14 +43,14 @@ class TagPageOpen extends Component {
     }
   }
 
-  shouldComponentUpdate (nextProps) {
+  shouldComponentUpdate (nextProps, nexState) {
     if (this.props.tagPage === nextProps.tagPage) {
       return false
     }
     return true
   }
 
-  componentDidUpdate () {
+  componentDidUpdate (nextProps, nexState) {
     this.moveToTag(this._currentTag, this._scrollView)
   }
 
@@ -119,34 +120,47 @@ class TagPageOpen extends Component {
       </Menu>
     )
 
+    const Tags = this.props.tagPage.map((item) => {
+      return (
+        <CSSTransition
+          key={item.path}
+          timeout={500}
+          classNames="tagsMove"
+        >
+          <Tag
+            onRef={(tag) => {
+              this._currentTag = tag
+            }}
+            onClose={() => {
+              this.deleteOne(item)
+            }}
+            onPress={() => {
+              this.handleTip(item)
+            }}
+            color={item.color}
+            closable={item.flag}>
+            {item.title}
+          </Tag>
+        </CSSTransition>
+      )
+    })
+
     return (
       <div className="TagPageOpen">
         <Row>
-          <Col span={22}>
+          <Col span={22} className="TagPageOpen__col-22">
+            <div className="tag-button">
+              {/* <Icon type="left"/> */}
+            </div>
             <div className="TagPageOpen__scroll-view" ref={view => this._scrollView = view}>
               <div className="TagPageOpen__scroll-body" style={{left: `${this.state.scrollBodyLeft}px`}}>
-                {
-                  this.props.tagPage.map((item) => {
-                    return (
-                      <Tag
-                        onRef={(tag) => {
-                          this._currentTag = tag
-                        }}
-                        onClose={() => {
-                          this.deleteOne(item)
-                        }}
-                        onPress={() => {
-                          this.handleTip(item)
-                        }}
-                        color={item.color}
-                        closable={item.flag}
-                        key={item.path}>
-                        {item.title}
-                      </Tag>
-                    )
-                  })
-                }
+                <TransitionGroup style={{display: 'flex'}}>
+                  { Tags }
+                </TransitionGroup>
               </div>
+            </div>
+            <div className="tag-button">
+              {/* <Icon type="right" /> */}
             </div>
           </Col>
           <Col span={2} className="TagPageOpen__col-2">
