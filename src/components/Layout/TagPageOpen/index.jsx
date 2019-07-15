@@ -18,6 +18,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   deleteOneTag (payload) {
     dispatch(actionCreators.deleteOneTag(payload))
+  },
+  deleteAllTag (payload) {
+    dispatch(actionCreators.deleteAllTag(payload))
+  },
+  deleteOtherTag (payload) {
+    dispatch(actionCreators.deleteOtherTag(payload))
   }
 })
 
@@ -70,16 +76,23 @@ class TagPageOpen extends Component {
   }
 
   deleteOne = (payload) => {
-    this.props.deleteOneTag(payload)
+    const { history } = this.props
+
+    this.props.deleteOneTag({
+      currentTagMessage: payload,
+      history
+    })
   }
 
   deleteMenu = ({ key }) => {
+    const { deleteAllTag, deleteOtherTag, history } = this.props
+
     switch (key) {
       case 'all':
-        
+        deleteAllTag(history)
         break
       case 'other':
-      
+        deleteOtherTag(history)
         break
       default:
         break
@@ -122,7 +135,7 @@ class TagPageOpen extends Component {
                         onClose={() => {
                           this.deleteOne(item)
                         }}
-                        onTip={() => {
+                        onPress={() => {
                           this.handleTip(item)
                         }}
                         color={item.color}

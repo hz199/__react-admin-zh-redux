@@ -13,7 +13,8 @@ const defaultStore = {
   // 标签菜单导航
   tagPage: [
     homePathConfig
-  ]
+  ],
+  tagPageRouter: ['/app']
 }
 
 const setTagPage = (state, data) => {
@@ -45,25 +46,57 @@ const setTagPage = (state, data) => {
 
   window.localStorage.setItem('zh_tag_page', JSON.stringify(initTagPage))
   window.localStorage.setItem('zh_tag_path', JSON.stringify(initTagPath))
-  return Object.assign({}, state, {tagPage: initTagPage})
+  return Object.assign({}, state, {tagPage: initTagPage, tagPageRouter: initTagPath})
 }
 
 // 删除全部
-const deleteAllTag = (state) => {
-  return state
+const deleteAllTag = (state, history) => {
+  history && history.push('/app')
+
+  const initTagPage = [homePathConfig]
+  const initTagPath = ['/app']
+
+  window.localStorage.setItem('zh_tag_page', JSON.stringify(initTagPage))
+  window.localStorage.setItem('zh_tag_path', JSON.stringify(initTagPath))
+  return Object.assign({}, state, {tagPage: initTagPage, tagPageRouter: initTagPath})
 }
 
 // 删除其他
 const deleteOtherTag = (state) => {
-  return state
+  let {tagPage} = JSON.parse(JSON.stringify(state))
+
+  let tagPageRouter = []
+
+  tagPage = tagPage.filter(item => {
+    if (item.color !== 'default' || item.path === '/app') {
+      tagPageRouter.push(item.path)
+      return true
+    } else {
+      return false
+    }
+  })
+
+  window.localStorage.setItem('zh_tag_page', JSON.stringify(tagPage))
+  window.localStorage.setItem('zh_tag_path', JSON.stringify(tagPageRouter))
+  return Object.assign({}, state, {tagPage, tagPageRouter})
 }
 
 // 删除一个
-const deleteOneTag = (state, router) => {
-  const tagPage = state.tagPage
+const deleteOneTag = (state, params) => {
+  let {tagPage, tagPageRouter} = JSON.parse(JSON.stringify(state))
+  const currentIndex = tagPageRouter.indexOf(params.currentTagMessage.path)
 
-  console.log(tagPage)
-  return state
+  if (params.currentTagMessage.color === 'primary') {
+    params.history.push(tagPageRouter[currentIndex - 1])
+  }
+
+
+  tagPage.splice(currentIndex, 1)
+  tagPageRouter.splice(currentIndex, 1)
+
+  window.localStorage.setItem('zh_tag_page', JSON.stringify(tagPage))
+  window.localStorage.setItem('zh_tag_path', JSON.stringify(tagPageRouter))
+  return Object.assign({}, state, {tagPage, tagPageRouter})
 }
 
 /**
@@ -80,9 +113,9 @@ const breadcrumbReducer = (state = defaultStore, action) => {
     case actionTypes.SET_TAG_PAGE:
       return setTagPage(state, action.data)
     case actionTypes.DELETE_ALL_TAG:
-      return deleteAllTag(state)
+      return deleteAllTag(state, action.data)
     case actionTypes.DELETE_OTHER_TAG:
-      return deleteOtherTag(state)
+      return deleteOtherTag(state, action.data)
     case actionTypes.DELETE_ONE_TAG:
       return deleteOneTag(state, action.data)
     default:

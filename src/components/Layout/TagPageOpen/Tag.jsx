@@ -7,7 +7,7 @@ const Tag = (props) => {
     <div className="zh-tag"
     onClick={(e) => {
       e.stopPropagation()
-      props.onTip && props.onTip(e)
+      props.onPress && props.onPress(e)
     }}
     ref={tag => {
       props.color === 'primary' && tag && props.onRef(tag)
@@ -28,7 +28,7 @@ Tag.propTypes = {
   color: PropTypes.oneOf(['default', 'primary']),
   onRef: PropTypes.func,
   onClose: PropTypes.func,
-  onTip: PropTypes.func
+  onPress: PropTypes.func
 }
 
 export default Tag

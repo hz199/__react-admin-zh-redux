@@ -15,10 +15,12 @@ export const deleteOneTag = (data) => ({
   data
 })
 
-export const deleteAllTag = () => ({
-  type: actionTypes.DELETE_ALL_TAG
+export const deleteAllTag = (data) => ({
+  type: actionTypes.DELETE_ALL_TAG,
+  data
 })
 
 export const deleteOtherTag = (data) => ({
-  type: actionTypes.DELETE_OTHER_TAG
+  type: actionTypes.DELETE_OTHER_TAG,
+  data
 })
