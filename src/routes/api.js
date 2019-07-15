@@ -29,6 +29,15 @@ const routes = [
       rules: ['loginRequired']
     }
   },
+  {
+    name: 'DragTable',
+    path: '/app/tables/dragTable',
+    component: asyncImport(() => import('../containers/Tables/DragTable')),
+    meta: {
+      title: '拖拽表格',
+      rules: ['loginRequired']
+    }
+  },
   /* table end */
   /* ComponentsPage start */
   {

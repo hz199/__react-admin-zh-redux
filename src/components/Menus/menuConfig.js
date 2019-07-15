@@ -18,6 +18,11 @@ const menus = [
         icon: 'table',
         path: '/app/tables/table1',
         title: '基础表格'
+      },
+      {
+        icon: 'table',
+        path: '/app/tables/dragTable',
+        title: '拖拽表格'
       }
     ]
   },
