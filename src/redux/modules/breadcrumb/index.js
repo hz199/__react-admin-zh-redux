@@ -58,6 +58,14 @@ const deleteOtherTag = (state) => {
   return state
 }
 
+// 删除一个
+const deleteOneTag = (state, router) => {
+  const tagPage = state.tagPage
+
+  console.log(tagPage)
+  return state
+}
+
 /**
  * home store
  * @param [state]
@@ -75,6 +83,8 @@ const breadcrumbReducer = (state = defaultStore, action) => {
       return deleteAllTag(state)
     case actionTypes.DELETE_OTHER_TAG:
       return deleteOtherTag(state)
+    case actionTypes.DELETE_ONE_TAG:
+      return deleteOneTag(state, action.data)
     default:
       return state
   }

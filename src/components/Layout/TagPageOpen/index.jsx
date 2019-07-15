@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Row, Col, Dropdown, Button, Menu } from 'antd'
 import Tag from './Tag'
+import { actionCreators } from '@/redux/modules/breadcrumb'
+
 import './index.less'
 
 
@@ -13,9 +16,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  deleteOneTag (payload) {
+    dispatch(actionCreators.deleteOneTag(payload))
+  }
 })
 
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 class TagPageOpen extends Component {
   // 当前tag ref
@@ -64,7 +70,7 @@ class TagPageOpen extends Component {
   }
 
   deleteOne = (payload) => {
-    console.log(payload)
+    this.props.deleteOneTag(payload)
   }
 
   deleteMenu = ({ key }) => {
@@ -77,6 +83,14 @@ class TagPageOpen extends Component {
         break
       default:
         break
+    }
+  }
+
+  handleTip (payload) {
+    const { history } = this.props
+
+    if (payload.path !== history.location.pathname) {
+      history.push(payload.path)
     }
   }
 
@@ -107,6 +121,9 @@ class TagPageOpen extends Component {
                         }}
                         onClose={() => {
                           this.deleteOne(item)
+                        }}
+                        onTip={() => {
+                          this.handleTip(item)
                         }}
                         color={item.color}
                         closable={item.flag}

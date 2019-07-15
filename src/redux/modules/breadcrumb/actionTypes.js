@@ -6,3 +6,6 @@ export const DELETE_ALL_TAG = 'breadcrumb/DELETE_ALL_TAG'
 
 // 删除其他
 export const DELETE_OTHER_TAG = 'breadcrumb/DELETE_OTHER_TAG'
+
+// 删除一个
+export const DELETE_ONE_TAG = 'breadcrumb/DELETE_ONE_TAG'
