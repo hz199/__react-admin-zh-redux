@@ -2,8 +2,8 @@
 import axios from 'axios'
 import LoadingBar from '@/components/LoadingBar'
 
-let apiBaseURL = 'https://www.easy-mock.com/mock/5d088415bdc26d23199ba01a'
-// const apiBaseURL = 'https://www.fastmock.site/mock/4dcea17ec42f04835302140b4dadeacc'
+// let apiBaseURL = 'https://www.easy-mock.com/mock/5d088415bdc26d23199ba01a'
+const apiBaseURL = 'https://www.fastmock.site/mock/d0f2daa2f0f6b981661fc60e0a1c02d8'
 
 const instance = axios.create({
   baseURL: apiBaseURL,
