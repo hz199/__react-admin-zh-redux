@@ -89,7 +89,7 @@ class LineBarChart extends PureComponent {
       }
     }
 
-    const { series, title } = this.props.options
+    const { series, title, xAxisData } = this.props.options
 
     const seriesData = series.map(item => {
       if (item.type === 'bar') {
@@ -146,7 +146,7 @@ class LineBarChart extends PureComponent {
         axisTick: {
           show: false,
         },
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月',],
+        data: xAxisData || [],
       }],
       yAxis: [{
         type: 'value',
@@ -172,7 +172,7 @@ class LineBarChart extends PureComponent {
           show: false,
         },
       }],
-      series: seriesData
+      series: seriesData || []
     };
   }
 
