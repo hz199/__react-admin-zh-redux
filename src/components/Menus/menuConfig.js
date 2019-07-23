@@ -37,6 +37,11 @@ const menus = [
       }
     ]
   },
+  {
+    icon: 'desktop',
+    title: 'css模块化',
+    path: '/app/cssModules'
+  },
 ]
 
 export default menus

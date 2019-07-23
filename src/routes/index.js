@@ -23,7 +23,7 @@ const requiredRules = {
 
 /**
  * @param  {Protected:登陆拦截（函数组建）}
- * @return {还是一个Route组建，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}
+ * @return {还是一个Route组件，这个Route组建使用的是Route三大渲染方式（component、render、children）的render方式}
  */
 const Protected =  ({component: Comp, ...rest}) => {
 
@@ -33,6 +33,7 @@ const Protected =  ({component: Comp, ...rest}) => {
       const { title } = rest.meta
       document.title = title || 'react-admin'
 
+      // 路由拦截 进入页面前 检查
       if (meta.rules && meta.rules instanceof Array) {
         const middlewares = meta.rules.map(item => requiredRules[item])
         for (let i = 0; i < middlewares.length; i++) {
@@ -48,6 +49,7 @@ const Protected =  ({component: Comp, ...rest}) => {
 
       // 设置 redux tagPage 当前路径
       setTagPage({path: path, title: meta.title})
+
       return <Comp {...otherRest}/>
     }}/>
   )

@@ -48,8 +48,17 @@ const routes = [
       title: 'LoadingBar',
       rules: ['loginRequired']
     }
-  }
+  },
   /* ComponentsPage end */
+  {
+    name: 'CssModules',
+    path: '/app/cssModules',
+    component: asyncImport(() => import('../containers/CssModules')),
+    meta: {
+      title: 'css模块化',
+      rules: ['loginRequired']
+    }
+  }
 ]
 
 export default routes
