@@ -1,9 +1,9 @@
 import React from 'react'
-import './index.less'
+import './index.module.less'
 
 const CssModules = (props) => {
   return (
-    <div>CssModules</div>
+    <div styleName="css-module">CssModules</div>
   )
 }
 
