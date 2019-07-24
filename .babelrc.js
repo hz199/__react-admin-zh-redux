@@ -1,4 +1,3 @@
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 
 module.exports = {
   "presets": [

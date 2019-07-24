@@ -42,6 +42,17 @@ const menus = [
     title: 'css模块化',
     path: '/app/cssModules'
   },
+  {
+    icon: 'compass',
+    title: 'Echarts',
+    SubMenu: [
+      {
+        icon: 'line-chart',
+        path: '/app/echarts/lineAndBar',
+        title: '折线柱状图'
+      }
+    ]
+  },
 ]
 
 export default menus

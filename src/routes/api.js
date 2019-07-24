@@ -58,6 +58,15 @@ const routes = [
       title: 'css模块化',
       rules: ['loginRequired']
     }
+  },
+  {
+    name: 'lineAndBar',
+    path: '/app/echarts/lineAndBar',
+    component: asyncImport(() => import('../containers/Echarts/LineBar')),
+    meta: {
+      title: '折线柱状图',
+      rules: ['loginRequired']
+    }
   }
 ]
 

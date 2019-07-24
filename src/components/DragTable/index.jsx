@@ -82,17 +82,19 @@ class DragSortingTable extends React.Component {
     },
   }
 
-  moveRow = (dragIndex, hoverIndex) => {
+  moveRow = async (dragIndex, hoverIndex) => {
     const { data } = this.state
     const dragRow = data[dragIndex]
 
-    this.setState(
+    await this.setState(
       update(this.state, {
         data: {
           $splice: [[dragIndex, 1], [hoverIndex, 0, dragRow]],
         }
       })
     )
+
+    this.props.onDragEnd && this.props.onDragEnd(dragIndex, hoverIndex, dragRow, this.state.data)
   }
 
   render() {
@@ -117,12 +119,14 @@ class DragSortingTable extends React.Component {
 
 DragSortingTable.propTypes = {
   columns: PropsType.array.isRequired,
-  dataSource: PropsType.array.isRequired
+  dataSource: PropsType.array.isRequired,
+  onDragEnd: PropsType.func
 }
 
 DragSortingTable.defaultProps = {
   columns: [],
-  dataSource: []
+  dataSource: [],
+  onDragEnd: () => {}
 }
 
 export default DragSortingTable

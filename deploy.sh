@@ -13,7 +13,7 @@ cd build
 
 git init
 git add -A
-git commit -m 'init project'
+git commit -m "初始化项目"
 git remote add origin git@github.com:hz199/reactAdmin.io.git
 git push -f origin master
 
