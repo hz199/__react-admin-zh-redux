@@ -18,6 +18,7 @@
 // header
 .admin-header-left {
   height: 100%;
+  width: auto;
 }
 
 .admin-header-right {
@@ -25,4 +26,28 @@
 }
 body {
   color: #333333;
+}
+.logo {
+  height: 64px;
+  width: 100%;
+  padding: 10px 30px;
+  line-height: 44px;
+  color: #cccccc;
+  text-align: center;
+  &__p {
+   margin: 0;
+   background: rgba(0, 0, 0, 0.1);
+   border-radius: 5px;
+  }
+}
+
+.zh-app {
+  &__drawer {
+    .ant-drawer-body {
+      padding: 0
+    }
+    .ant-drawer-content {
+      background: #515a6e;
+    }
+  }
 }

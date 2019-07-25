@@ -4,7 +4,8 @@ import * as actionCreators from './actionCreators'
 
 // 引入 immutableJS 把 store 变成不可修改的数据
 const defaultStore = {
-  userInfo: {}
+  userInfo: {},
+  screenOffsetWidth: 0
 }
 
 /**
@@ -18,6 +19,8 @@ const authReducer = (state = defaultStore, action) => {
   switch (action.type) {
     case actionTypes.SET_USER_INFO:
       return Object.assign({}, state, { userInfo: action.data })
+    case actionTypes.SET_SCREEN_WIDTH:
+      return Object.assign({}, state, { screenOffsetWidth: action.data })
     default:
       return state
   }

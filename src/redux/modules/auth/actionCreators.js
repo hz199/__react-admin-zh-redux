@@ -17,3 +17,8 @@ export const getUserInfo = (data) => {
     })
   }
 }
+
+export const setScreenWidth = (data) => ({
+  type: actionTypes.SET_SCREEN_WIDTH,
+  data
+})
