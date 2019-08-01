@@ -6,6 +6,9 @@ import PropTypes from 'prop-types'
 const menu = (
   <Menu>
     <Menu.Item key="1">退出登录</Menu.Item>
+    <Menu.Item key="2">
+      <a href="https://github.com/hz199/__react-admin-zh-redux" target="_block">github</a>
+    </Menu.Item>
   </Menu>
 )
 
