@@ -148,7 +148,7 @@ class TagPageOpen extends Component {
     return (
       <div className="TagPageOpen">
         <Row>
-          <Col span={22} className="TagPageOpen__col-22">
+          <Col lg={22} xs={18} className="TagPageOpen__col-22">
             <div className="tag-button">
               {/* <Icon type="left"/> */}
             </div>
@@ -163,7 +163,7 @@ class TagPageOpen extends Component {
               {/* <Icon type="right" /> */}
             </div>
           </Col>
-          <Col span={2} className="TagPageOpen__col-2">
+          <Col lg={2} xs={6} className="TagPageOpen__col-2">
           <Dropdown overlay={menus} placement="bottomCenter">
             <Button type="primary" size="small">标签选项</Button>
           </Dropdown>
