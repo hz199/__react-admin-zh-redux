@@ -98,7 +98,7 @@ class App extends React.Component {
           ></AdminHeader>
           <TagPageOpen/>
           <Layout.Content style={{ margin: '8px 16px 0' }}>
-            <div style={{ padding: 24, background: '#fff', minHeight: '79.5vh' }}>
+            <div style={{ padding: 16, background: '#fff', minHeight: '79.5vh' }}>
               <Routes {...this.props}></Routes>
             </div>
           </Layout.Content>
