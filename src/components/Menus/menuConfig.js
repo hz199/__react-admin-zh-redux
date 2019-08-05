@@ -34,6 +34,11 @@ const menus = [
         icon: 'loading-3-quarters',
         path: '/app/components/loadingBar',
         title: 'LoadingBar'
+      },
+      {
+        icon: 'drag',
+        path: '/app/components/draggable',
+        title: '拖拽组件'
       }
     ]
   },

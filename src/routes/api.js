@@ -49,6 +49,15 @@ const routes = [
       rules: ['loginRequired']
     }
   },
+  {
+    name: 'Draggable',
+    path: '/app/components/draggable',
+    component: asyncImport(() => import('../containers/ComponentsPage/Draggable.jsx')),
+    meta: {
+      title: '拖拽组件',
+      rules: ['loginRequired']
+    }
+  },
   /* ComponentsPage end */
   {
     name: 'CssModules',
