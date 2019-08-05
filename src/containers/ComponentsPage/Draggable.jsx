@@ -26,7 +26,14 @@ const LoadingBarPage = (props) => {
   return (
     <div className="drag-wrapper" style={dragWrapperStyle}>
       <Draggable>
-        <Button type="primary">拖拽</Button>
+        {
+          (getRef, { style }) => (
+            <Button
+              {...style}
+              ref={(ref) => getRef(ref)}
+              type="primary">拖拽</Button>
+          )
+        }
       </Draggable>
     </div>
   )
