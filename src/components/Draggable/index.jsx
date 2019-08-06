@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-
+import PropTypes from 'prop-types'
 
 class Draggable extends React.Component {
   static currentDargDom = null
+  static triggerDom = null
 
   constructor () {
     super()
@@ -21,6 +22,14 @@ class Draggable extends React.Component {
     }
   }
 
+  // 拖拽范围的 top left right bottom 参数
+  domRangParams = {
+    triggerWidth: 0,
+    dragWidth: 0,
+    triggerHeight: 0,
+    dragHeight: 0
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextState !== this.state ||
@@ -34,23 +43,22 @@ class Draggable extends React.Component {
 
   componentWillUnmount () {
     this.currentDargDom.removeEventListener('mousedown', this.handleMousedown)
-    this.currentDargDom.removeEventListener('mousemove', this.handleMousemove)
-    this.currentDargDom.removeEventListener('mouseup', this.handleMouseup)
+    this.triggerDom.removeEventListener('mousemove', this.handleMousemove)
+    this.triggerDom.removeEventListener('mouseup', this.handleMouseup)
   }
 
   handleMousedown = (e) => {
     let transform = /\(.*\)/.exec(this.currentDargDom.style.transform)
+
     if (transform) {
       transform = transform[0].slice(1, transform[0].length - 1)
       let splitxy = transform.split('px, ')
-      
+
       this.setState({
         transformX: parseFloat(splitxy[0]),
         transformY: parseFloat(splitxy[1].split('px')[0])
       })
     }
-
-    console.log(e, 111)
 
     this.setState((prevState) => {
       return {
@@ -63,7 +71,10 @@ class Draggable extends React.Component {
       }
     })
 
-    this.currentDargDom.addEventListener('mousemove', this.handleMousemove)
+    this.triggerDom.addEventListener('mousemove', this.handleMousemove)
+    this.triggerDom.addEventListener('mouseup', this.handleMouseup)
+
+    this.initTriggerDomRang()
   }
 
   handleMousemove = (e) => {
@@ -71,6 +82,21 @@ class Draggable extends React.Component {
 
     let xOffset = e.pageX - pageX + transformX
     let yOffset = e.pageY - pageY + transformY
+
+    if (this.props.isRange) {
+      if (xOffset < 0) {
+        xOffset = 0
+      } else if (xOffset > this.domRangParams.triggerWidth - this.domRangParams.dragWidth) {
+        xOffset = this.domRangParams.triggerWidth - this.domRangParams.dragWidth
+      }
+
+      if (yOffset < 0) {
+        yOffset = 0
+      } else if (yOffset > this.domRangParams.triggerHeight - this.domRangParams.dragHeight) {
+        yOffset = this.domRangParams.triggerHeight - this.domRangParams.dragHeight
+      }
+    }
+
     if (canMove) {
 
       this.setState((prevState) => {
@@ -80,13 +106,14 @@ class Draggable extends React.Component {
           })
         }
       })
-
     }
+
+    this.props.onDragMoving(e)
   }
 
   handleMouseup = (e) => {
-    this.currentDargDom.removeEventListener('mousemove', this.handleMousemove);
-    this.currentDargDom.removeEventListener('mouseup', this.handleMouseup);
+    this.triggerDom.removeEventListener('mousemove', this.handleMousemove);
+    this.triggerDom.removeEventListener('mouseup', this.handleMouseup);
 
     this.setState((prevState) => {
       const newStyle = JSON.parse(JSON.stringify(prevState.style))
@@ -96,6 +123,8 @@ class Draggable extends React.Component {
         style: newStyle
       }
     })
+
+    this.props.onDragEnd(e)
   }
 
   onDragStart = () => {
@@ -103,9 +132,19 @@ class Draggable extends React.Component {
       console.warn('dom不存在！')
       return
     }
+    // 拖拽区域dom
+    this.triggerDom = this.props.trigger ? document.querySelector(this.props.trigger) : document
     // 绑定事件
     this.currentDargDom.addEventListener('mousedown', this.handleMousedown)
-    this.currentDargDom.addEventListener('mouseup', this.handleMouseup)
+  }
+
+  initTriggerDomRang = () => {
+    this.domRangParams = {
+      triggerWidth: this.triggerDom.clientWidth || this.triggerDom.documentElement.clientWidth,
+      dragWidth: this.currentDargDom.offsetWidth,
+      triggerHeight: this.triggerDom.clientHeight || this.triggerDom.documentElement.clientHeight,
+      dragHeight: this.currentDargDom.offsetHeight
+    }
   }
 
   /* 获取dom */
@@ -121,6 +160,19 @@ class Draggable extends React.Component {
       style: {style}
     })
   }
+}
+
+Draggable.defaultProps = {
+  onDragMoving: () => {},
+  onDragEnd: () => {},
+  isRange: false
+}
+
+Draggable.propTypes = {
+  trigger: PropTypes.string, // 拖拽区域 默认 document
+  onDragMoving: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  isRange: PropTypes.bool // 在规定范围内不可出
 }
 
 export default Draggable

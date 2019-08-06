@@ -5,7 +5,7 @@ import './App.less'
 import Menus from './components/Menus'
 import AdminHeader from './components/Layout/Header'
 import TagPageOpen from './components/Layout/TagPageOpen'
-import { Layout, Drawer } from 'antd'
+import { Layout, Drawer, BackTop } from 'antd'
 import { connect } from 'react-redux'
 import { actionCreators } from '@/redux/modules/auth'
 import throttle from './utils/throttle'
@@ -104,6 +104,7 @@ class App extends React.Component {
           </Layout.Content>
           <Layout.Footer style={{ textAlign: 'center' }}>react-admin ©2019 Created by H.Z</Layout.Footer>
         </Layout>
+        <BackTop></BackTop>
       </Layout>
     )
   }
