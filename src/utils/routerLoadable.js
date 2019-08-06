@@ -1,16 +1,13 @@
 import React from 'react'
 import loadable from 'react-loadable'
+import LoadingView from '../components/Loading'
 
 function asyncImport(loader) {
   function Loading(props) {
     if (props.error)
       return <div> Error! </div>
     else if (props.pastDelay)
-      return (
-        <div>
-          正在加载组件数据...
-        </div>
-      )
+      return <LoadingView/>
     else
       return null
   }

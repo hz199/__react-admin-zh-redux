@@ -39,6 +39,11 @@ const menus = [
         icon: 'drag',
         path: '/app/components/draggable',
         title: '拖拽组件'
+      },
+      {
+        icon: 'loading',
+        path: '/app/components/loading',
+        title: 'loading'
       }
     ]
   },

@@ -50,6 +50,15 @@ const routes = [
     }
   },
   {
+    name: 'LoadingPage',
+    path: '/app/components/loading',
+    component: asyncImport(() => import('../containers/ComponentsPage/LoadingPage.jsx')),
+    meta: {
+      title: 'LoadingPage',
+      rules: ['loginRequired']
+    }
+  },
+  {
     name: 'Draggable',
     path: '/app/components/draggable',
     component: asyncImport(() => import('../containers/ComponentsPage/Draggable.jsx')),
