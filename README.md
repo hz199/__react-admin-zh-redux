@@ -18,7 +18,7 @@
 
 - 首页
 
-![image](./demo1.png)
+![image](./images/demo1.png)
 - 首页移动端
 
-![image](./demo2.png)
+![image](./images/demo2.png)
