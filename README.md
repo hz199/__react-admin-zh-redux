@@ -5,7 +5,7 @@
 由于之前只是了解 react，并未深入写过项目，最近这段时间想系统的学习下 react 全家桶，特地写下这个项目以作练习。
 适当写一些公共的组件用以练习。[预览地址，适配移动端](https://react.closeeyes.cn)
 
-- `typescript` 是前端趋势，最近研究一下`ts`， 把这个项目重新搞了一下地址[点这里](https://github.com/hz199/react-admin-ts)
+- `typescript` 是前端趋势，最近研究一下`ts`， 把这个项目重新搞了一下地址[https://github.com/hz199/react-admin-ts](https://github.com/hz199/react-admin-ts)
 
 ### 组件
 
